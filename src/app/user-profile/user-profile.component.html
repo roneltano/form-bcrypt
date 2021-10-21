@@ -1,0 +1,110 @@
+<div>
+  Email: {{ email.value }}
+  <br />
+  Password: {{ passwordshow }}
+  <br />
+  Student ID: {{ studid.value }}
+  <br />
+  Full Name: {{ name.value }}
+  <br />
+  Gender: {{ gender.value }}
+  <br />
+</div>
+
+<mat-card class="login-page">
+  <mat-card-title>User Profile (Template)</mat-card-title>
+  <mat-card-content>
+    <form
+      class="login-form data-form"
+      (ngSubmit)="onSubmit(loginForm)"
+      #loginForm="ngForm"
+    >
+      <mat-form-field>
+        <input
+          matInput
+          type="email"
+          name="email"
+          email
+          ngModel
+          placeholder="Email"
+          required
+          #email="ngModel"
+          [ngModelOptions]="{ updateOn: 'blur' }"
+        />
+
+        <mat-error *ngIf="email.errors?.required">Email is required</mat-error>
+        <mat-error *ngIf="email.errors?.email">Email is invalid</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          matInput
+          type="password"
+          name="password"
+          password
+          ngModel
+          placeholder="Password"
+          required
+          minlength="8"
+          #pass="ngModel"
+          [ngModelOptions]="{ updateOn: 'blur' }"
+        />
+
+        <mat-error *ngIf="pass.errors?.required"
+          >Password is required</mat-error
+        >
+        <mat-error *ngIf="pass.errors?.minlength">
+          Password must be atleast 8 character
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          name="studID"
+          ngModel
+          placeholder="Student ID"
+          required
+          #studid="ngModel"
+          [ngModelOptions]="{ updateOn: 'blur' }"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          name="Fullname"
+          ngModel
+          placeholder="Full name"
+          required
+          #name="ngModel"
+          [ngModelOptions]="{ updateOn: 'blur' }"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          name="gender"
+          ngModel
+          placeholder="Gender"
+          required
+          #gender="ngModel"
+          [ngModelOptions]="{ updateOn: 'blur' }"
+        />
+      </mat-form-field>
+
+      <button
+        (click)="getValue(pass.value)"
+        mat-raised-button
+        color="primary"
+        [disabled]="!loginForm.valid"
+      >
+        Submit
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,75 @@
+<div>
+  Full Name: {{ name.value }}
+  <br />
+  Address {{ add.value }}
+  <br />
+  Email: {{ email.value }}
+  <br />
+  Job Title: {{ job.value }}
+  <br />
+  Position: {{ post.value }}
+  <br />
+</div>
+
+<mat-card class="login-page">
+  <mat-card-title>Job Profile (Reactive)</mat-card-title>
+  <mat-card-content>
+    <form
+      class="login-form data-form"
+      [formGroup]="form"
+      (ngSubmit)="onSubmit()"
+    >
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          formControlName="name"
+          placeholder="Full name"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          formControlName="add"
+          placeholder="Address"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          matInput
+          type="email"
+          formControlName="email"
+          name="email"
+          placeholder="Email"
+          required
+        />
+
+        <mat-error *ngIf="email.errors?.required">Email is required</mat-error>
+        <mat-error *ngIf="email.errors?.email">Email is invalid</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          formControlName="job"
+          placeholder="Job Title"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          formControlName="post"
+          placeholder="Position"
+        />
+      </mat-form-field>
+
+      <button mat-raised-button color="primary">Submit</button>
+    </form>
+  </mat-card-content>
+</mat-card>
